@@ -5,6 +5,7 @@ import { createApp } from '@viewfly/platform-browser'
 
 import { Toolbar } from './toolbar'
 import { useReadonly } from '../../textbus/hooks/use-readonly'
+import { Teleport } from '../../components/teleport/teleport'
 
 export class ToolbarPlugin implements Plugin {
   private app: Application | null = null
@@ -13,7 +14,7 @@ export class ToolbarPlugin implements Plugin {
     const App = function () {
       const readonly = useReadonly()
       return () => {
-        return readonly() ? null : <Toolbar/>
+        return readonly() ? null : <Teleport><Toolbar/></Teleport>
       }
     }
     this.app = createApp(<App/>, {

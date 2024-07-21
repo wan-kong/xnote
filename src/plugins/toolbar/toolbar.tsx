@@ -65,13 +65,14 @@ export const Toolbar = withAnnotation({
     if (!selectionFocusRect) {
       return null
     }
-
+    const toolBar= toolbarRef.current?.getBoundingClientRect()
+    console.log('toolBar',toolBar)
     const centerLeft = selectionFocusRect.left
     const toBottom = selectionFocusRect.top < toolbarHeight + 10
     const top = toBottom ?
       selectionFocusRect.top + selectionFocusRect.height - docRect.top + 10 :
       selectionFocusRect.top - docRect.top - toolbarHeight - 10
-
+    console.log('selectionFocusRect',selectionFocusRect,'docRect',docRect)
     updateViewPosition(draft => {
       draft.transitionDuration = .15
       draft.left = centerLeft - docRect.left
@@ -142,7 +143,6 @@ export const Toolbar = withAnnotation({
     mousedownSubscription.unsubscribe()
     mouseupSubscription.unsubscribe()
   })
-
   return withScopedCSS(css, () => {
     const p = viewPosition()
     return (
@@ -155,37 +155,37 @@ export const Toolbar = withAnnotation({
         transitionDuration: p.transitionDuration + 's'
       }}>
         <ToolbarItem>
-          <BlockTool/>
+          <BlockTool />
         </ToolbarItem>
         <ToolbarItem>
-          <AttrTool/>
+          <AttrTool />
         </ToolbarItem>
         <ToolbarItem>
-          <BoldTool/>
+          <BoldTool />
         </ToolbarItem>
         <ToolbarItem>
-          <ItalicTool/>
+          <ItalicTool />
         </ToolbarItem>
         <ToolbarItem>
-          <StrikeThroughTool/>
+          <StrikeThroughTool />
         </ToolbarItem>
         <ToolbarItem>
-          <UnderlineTool/>
+          <UnderlineTool />
         </ToolbarItem>
         <ToolbarItem>
-          <FontSizeTool/>
+          <FontSizeTool />
         </ToolbarItem>
         <ToolbarItem>
-          <FontFamilyTool/>
+          <FontFamilyTool />
         </ToolbarItem>
         <ToolbarItem>
-          <LinkTool hideToolbar={hideToolbar}/>
+          <LinkTool hideToolbar={hideToolbar} />
         </ToolbarItem>
         <ToolbarItem>
-          <CodeTool/>
+          <CodeTool />
         </ToolbarItem>
         <ToolbarItem>
-          <ColorTool/>
+          <ColorTool />
         </ToolbarItem>
       </div>
     )

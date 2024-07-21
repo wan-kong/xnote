@@ -126,7 +126,7 @@ export const LeftToolbar = withAnnotation({
           const containerRect = docContentContainer.getBoundingClientRect()
           const currentRect = nativeNode.getBoundingClientRect()
           draft.display = true
-          draft.left = currentRect.left - containerRect.left
+          draft.left = currentRect.x 
           draft.top = currentRect.top - containerRect.top + docContentContainer.offsetTop
         })
       } else {
@@ -232,28 +232,27 @@ export const LeftToolbar = withAnnotation({
   function changeIgnoreMove(b: boolean) {
     isIgnoreMove = b
   }
-
   return withScopedCSS(css, () => {
     const position = positionSignal()
     const slot = activeSlot()
-    let activeNode = <span class="xnote-icon-pilcrow"/>
+    let activeNode = <span class="xnote-icon-pilcrow" />
     const states = checkStates(slot)
 
     if (slot) {
       const types: [boolean, JSXNode][] = [
-        [states.paragraph, <span class="xnote-icon-pilcrow"/>],
-        [states.sourceCode, <span class="xnote-icon-source-code"/>],
-        [states.blockquote, <span class="xnote-icon-quotes-right"/>],
-        [states.todolist, <span class="xnote-icon-checkbox-checked"/>],
-        [states.table, <span class="xnote-icon-table"/>],
-        [states.unorderedList, <span class="xnote-icon-list"/>],
-        [states.orderedList, <span class="xnote-icon-list-numbered"/>],
-        [states.h1, <span class="xnote-icon-heading-h1"/>],
-        [states.h2, <span class="xnote-icon-heading-h2"/>],
-        [states.h3, <span class="xnote-icon-heading-h3"/>],
-        [states.h4, <span class="xnote-icon-heading-h4"/>],
-        [states.h5, <span class="xnote-icon-heading-h5"/>],
-        [states.h6, <span class="xnote-icon-heading-h6"/>],
+        [states.paragraph, <span class="xnote-icon-pilcrow" />],
+        [states.sourceCode, <span class="xnote-icon-source-code" />],
+        [states.blockquote, <span class="xnote-icon-quotes-right" />],
+        [states.todolist, <span class="xnote-icon-checkbox-checked" />],
+        [states.table, <span class="xnote-icon-table" />],
+        [states.unorderedList, <span class="xnote-icon-list" />],
+        [states.orderedList, <span class="xnote-icon-list-numbered" />],
+        [states.h1, <span class="xnote-icon-heading-h1" />],
+        [states.h2, <span class="xnote-icon-heading-h2" />],
+        [states.h3, <span class="xnote-icon-heading-h3" />],
+        [states.h4, <span class="xnote-icon-heading-h4" />],
+        [states.h5, <span class="xnote-icon-heading-h5" />],
+        [states.h6, <span class="xnote-icon-heading-h6" />],
       ]
 
       for (const t of types) {
@@ -279,63 +278,63 @@ export const LeftToolbar = withAnnotation({
             top: 0
           }} menu={
             isEmptyBlock() ?
-              <InsertTool replace={!needInsert} slot={activeSlot()}/>
+              <InsertTool replace={!needInsert} slot={activeSlot()} />
               :
               <>
                 <div class="btn-group">
                   <Button ordinary={true} highlight={states.paragraph} onClick={() => transform('paragraph')}>
-                    <span class="xnote-icon-pilcrow"/>
+                    <span class="xnote-icon-pilcrow" />
                   </Button>
                   <Button ordinary={true} highlight={states.h1} onClick={() => transform('h1')}>
-                    <span class="xnote-icon-heading-h1"/>
+                    <span class="xnote-icon-heading-h1" />
                   </Button>
                   <Button ordinary={true} highlight={states.h2} onClick={() => transform('h2')}>
-                    <span class="xnote-icon-heading-h2"/>
+                    <span class="xnote-icon-heading-h2" />
                   </Button>
                   <Button ordinary={true} highlight={states.h3} onClick={() => transform('h3')}>
-                    <span class="xnote-icon-heading-h3"/>
+                    <span class="xnote-icon-heading-h3" />
                   </Button>
                   <Button ordinary={true} highlight={states.h4} onClick={() => transform('h4')}>
-                    <span class="xnote-icon-heading-h4"/>
+                    <span class="xnote-icon-heading-h4" />
                   </Button>
                   <Button ordinary={true} highlight={states.todolist} onClick={() => transform('todolist')}>
-                    <span class="xnote-icon-checkbox-checked"/>
+                    <span class="xnote-icon-checkbox-checked" />
                   </Button>
                   <Button ordinary={true} highlight={states.orderedList} onClick={() => transform('ol')}>
-                    <span class="xnote-icon-list-numbered"/>
+                    <span class="xnote-icon-list-numbered" />
                   </Button>
                   <Button ordinary={true} highlight={states.unorderedList} onClick={() => transform('ul')}>
-                    <span class="xnote-icon-list"/>
+                    <span class="xnote-icon-list" />
                   </Button>
                   <Button ordinary={true} highlight={states.blockquote} onClick={() => transform('blockquote')}>
-                    <span class="xnote-icon-quotes-right"/>
+                    <span class="xnote-icon-quotes-right" />
                   </Button>
                   <Button ordinary={true} highlight={states.sourceCode} onClick={() => transform('sourceCode')}>
-                    <span class="xnote-icon-source-code"/>
+                    <span class="xnote-icon-source-code" />
                   </Button>
                 </div>
-                <Divider/>
+                <Divider />
                 <AttrTool
                   style={{ display: 'block' }}
                   abreast={true}
                   slot={slot}
                   applyBefore={applyBefore}>
-                  <MenuItem arrow={true} icon={<span class="xnote-icon-indent-decrease"/>}>缩进和对齐</MenuItem>
+                  <MenuItem arrow={true} icon={<span class="xnote-icon-indent-decrease" />}>缩进和对齐</MenuItem>
                 </AttrTool>
                 <ColorTool
                   style={{ display: 'block' }}
                   abreast={true}
                   applyBefore={applyBefore}
                 >
-                  <MenuItem arrow={true} icon={<span class="xnote-icon-color"/>}>颜色</MenuItem>
+                  <MenuItem arrow={true} icon={<span class="xnote-icon-color" />}>颜色</MenuItem>
                 </ColorTool>
-                <Divider/>
-                <MenuItem onClick={copy} icon={<span class="xnote-icon-copy"/>}>复制</MenuItem>
-                <MenuItem onClick={remove} icon={<span class="xnote-icon-bin"/>}>删除</MenuItem>
-                <MenuItem onClick={cut} icon={<span class="xnote-icon-cut"/>}>剪切</MenuItem>
-                <Divider/>
-                <Dropdown style={{ display: 'block' }} abreast={true} menu={<InsertTool hideTitle={true} slot={activeSlot()}/>}>
-                  <MenuItem arrow={true} icon={<span class="xnote-icon-plus"/>}>在下面添加</MenuItem>
+                <Divider />
+                <MenuItem onClick={copy} icon={<span class="xnote-icon-copy" />}>复制</MenuItem>
+                <MenuItem onClick={remove} icon={<span class="xnote-icon-bin" />}>删除</MenuItem>
+                <MenuItem onClick={cut} icon={<span class="xnote-icon-cut" />}>剪切</MenuItem>
+                <Divider />
+                <Dropdown style={{ display: 'block' }} abreast={true} menu={<InsertTool hideTitle={true} slot={activeSlot()} />}>
+                  <MenuItem arrow={true} icon={<span class="xnote-icon-plus" />}>在下面添加</MenuItem>
                 </Dropdown>
               </>
           }>

@@ -5,6 +5,7 @@ import { DomRenderer } from '@viewfly/platform-browser'
 
 import { LeftToolbar } from './left-toolbar'
 import { useReadonly } from '../../textbus/hooks/use-readonly'
+import { Teleport } from '../../components/teleport/teleport'
 
 export class LeftToolbarPlugin implements Plugin {
   private app: Application | null = null
@@ -13,11 +14,11 @@ export class LeftToolbarPlugin implements Plugin {
     const App = function () {
       const readonly = useReadonly()
       return () => {
-        return readonly() ? null : <LeftToolbar/>
+        return readonly() ? null : <Teleport><LeftToolbar /></Teleport>
       }
     }
     this.app = viewfly({
-      root: <App/>,
+      root: <App />,
       context: injector,
       nativeRenderer: new DomRenderer(),
       autoUpdate: true

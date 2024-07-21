@@ -36,7 +36,8 @@
     "@viewfly/platform-browser": "^1.0.0-alpha.16",
     "@viewfly/scoped-css": "^1.0.0-alpha.16",
     "highlight.js": "^11.9.0",
-    "katex": "^0.16.10"
+    "katex": "^0.16.10",
+    "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
