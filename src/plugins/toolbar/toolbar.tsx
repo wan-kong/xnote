@@ -66,19 +66,17 @@ export const Toolbar = withAnnotation({
       return null
     }
     const toolBar= toolbarRef.current?.getBoundingClientRect()
-    console.log('toolBar',toolBar)
-    const centerLeft = selectionFocusRect.left
-    const toBottom = selectionFocusRect.top < toolbarHeight + 10
-    const top = toBottom ?
-      selectionFocusRect.top + selectionFocusRect.height - docRect.top + 10 :
-      selectionFocusRect.top - docRect.top - toolbarHeight - 10
-    console.log('selectionFocusRect',selectionFocusRect,'docRect',docRect)
+    // const toBottom = selectionFocusRect.top < toolbarHeight + 10
+    // const top = toBottom ?
+    //   selectionFocusRect.top + selectionFocusRect.height - docRect.top + 10 :
+    //   selectionFocusRect.top - docRect.top - toolbarHeight - 10
+    // console.log('top',top)
     updateViewPosition(draft => {
       draft.transitionDuration = .15
-      draft.left = centerLeft - docRect.left
-      draft.top = top + 10
+      draft.left = Math.min(Math.max(20,selectionFocusRect.left - toolBar!.width / 2),docRect.right - 20 - toolBar!.width ) 
+      draft.top = selectionFocusRect.top -toolbarHeight - 10
     })
-    return top
+    return selectionFocusRect.top - toolbarHeight - 10
   }
 
   const sub = textbus.onChange.pipe(debounceTime(100)).subscribe(() => {

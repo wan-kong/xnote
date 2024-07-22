@@ -37,6 +37,7 @@ import { AttrTool } from '../_common/attr.tool'
 import { ColorTool } from '../_common/color.tool'
 import { InsertTool } from './insert-tool'
 import { EditorService } from '../../services/editor.service'
+// import { Teleport } from '../../components/teleport/teleport'
 
 export const LeftToolbar = withAnnotation({
   providers: [RefreshService]
@@ -123,12 +124,11 @@ export const LeftToolbar = withAnnotation({
         )
         const nativeNode = adapter.getNativeNodeByComponent(slot.parent!)!
         updatePosition(draft => {
-          const containerRect = docContentContainer.getBoundingClientRect()
           const currentRect = nativeNode.getBoundingClientRect()
           draft.display = true
           draft.left = currentRect.x 
-          draft.top = currentRect.top - containerRect.top + docContentContainer.offsetTop
-        })
+          draft.top = currentRect.y + currentRect.height/2 - 13
+        }) 
       } else {
         updatePosition(draft => {
           draft.display = false
@@ -277,7 +277,7 @@ export const LeftToolbar = withAnnotation({
             right: 0,
             top: 0
           }} menu={
-            isEmptyBlock() ?
+            isEmptyBlock() ? 
               <InsertTool replace={!needInsert} slot={activeSlot()} />
               :
               <>
